@@ -1,0 +1,33 @@
+{
+  "name": "cd-board",
+  "version": "0.0.1",
+  "description": "自动部署工具 - web 界面",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start:dev": "parcel ./src/**/*.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanLi-CN/cd-board.git"
+  },
+  "keywords": [
+    "ci",
+    "cd"
+  ],
+  "author": "Ivan Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IvanLi-CN/cd-board/issues"
+  },
+  "homepage": "https://github.com/IvanLi-CN/cd-board#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.0.0",
+    "parcel-bundler": "^1.12.4",
+    "postcss": "^8.2.2",
+    "postcss-modules": "^4.0.0",
+    "sass": "^1.32.0",
+    "tailwindcss": "^2.0.2",
+    "typescript": "^4.1.3"
+  }
+}
