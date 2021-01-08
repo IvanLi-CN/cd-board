@@ -4,7 +4,7 @@
   "description": "自动部署工具 - web 界面",
   "scripts": {
     "test": "test",
-    "start:dev": "parcel ./src/**/*.html",
+    "start:dev": "parcel ./src/**/*.html --no-cache",
     "build": "parcel build ./src/**/*.html"
   },
   "repository": {
@@ -21,9 +21,13 @@
     "url": "https://github.com/IvanLi-CN/cd-board/issues"
   },
   "homepage": "https://github.com/IvanLi-CN/cd-board#readme",
+  "source": "src/index.html",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/events": "^3.0.0",
     "@types/sass": "^1.16.0",
     "autoprefixer": "^10.2.0",
+    "events": "^3.2.0",
     "parcel": "^2.0.0-nightly.514",
     "postcss": "^8.2.2",
     "postcss-modules": "^4.0.0",
