@@ -1,7 +1,8 @@
 import { Component, h } from "preact";
-import { routerBus } from "../events/router.bus";
 import { Project } from "./project";
 import { ProjectSummaryCardComponent } from "./project-summary-card.component";
+import {projectsStore} from "./projects.store";
+import {globalStore} from "../global.store";
 
 interface State {
   projects: Project[];
@@ -9,14 +10,11 @@ interface State {
 export class ProjectsView extends Component<{}, State> {
   constructor() {
     super();
-    this.setState(() => ({
-      projects: new Array(10).fill(null).map((_, i) => ({
-        name: `TEST PROJECT ${i}`,
-        repository: {
-          fullName: `IvanLiCN/test-project-${i}`
-        }
-      }))
-    }));
+    this.state = {
+      projects: [],
+    }
+
+    this.fetchBaseData();
   }
   render() {
     const list = this.state.projects.map(project => (
@@ -29,6 +27,14 @@ export class ProjectsView extends Component<{}, State> {
     </ol>
   }
   itemOnClick(project: Project) {
-    routerBus.emit('replace', {project})
+    globalStore.setCurrentProject(project);
+  }
+
+  private fetchBaseData() {
+    projectsStore.projects$.subscribe(projects => {
+      this.setState(() => ({
+        projects,
+      }));
+    })
   }
 }
