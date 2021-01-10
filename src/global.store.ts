@@ -1,7 +1,8 @@
 import {Project} from "./projects/project";
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {DeployTask} from "./deploy-tasks/deploy-task";
 import {shareReplay} from "rxjs/operators";
+import {Component} from "preact";
 
 export class GlobalStore {
   public readonly currentProject$: Observable<Project>;
@@ -9,6 +10,8 @@ export class GlobalStore {
 
   private readonly currentProjectSubject: Subject<Project>;
   private readonly currentDeployTaskSubject: Subject<DeployTask>;
+
+  public readonly currentPageSubject = new BehaviorSubject<Component>(null);
 
   constructor() {
     this.currentProjectSubject = new Subject<Project>();

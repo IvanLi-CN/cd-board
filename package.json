@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "自动部署工具 - web 界面",
   "scripts": {
-    "test": "test",
+    "test": "npm -v",
     "start:dev": "parcel serve ./src/**/*.html --no-cache -p 7123",
     "build": "parcel build ./src/**/*.html"
   },
@@ -29,7 +29,7 @@
     "@types/sass": "^1.16.0",
     "autoprefixer": "^10.2.0",
     "events": "^3.2.0",
-    "parcel": "^2.0.0-nightly.514",
+    "parcel": "^2.0.0-nightly.520",
     "postcss": "^8.2.2",
     "postcss-modules": "^4.0.0",
     "sass": "^1.32.2",

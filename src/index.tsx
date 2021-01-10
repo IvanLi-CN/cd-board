@@ -5,15 +5,26 @@ import { DefaultLayout } from './layouts/default.layout';
 import { ProjectsView } from './projects/projects.view';
 import { Project } from "./projects/project";
 import { routerBus } from "./events/router.bus";
-import {projectStore} from "./projects/project.store";
 import {DeployTasksView} from "./deploy-tasks/deploy-tasks.view";
+import {globalStore} from "./global.store";
+import {ProjectEditorView} from "./projects/project-editor.view";
 
 interface State {
   project: Project,
+  currPage: Component,
 }
 
 class Main extends Component<{}, State> {
   projectView = <ProjectsView />;
+
+  constructor() {
+    super();
+    globalStore.currentPageSubject.subscribe(view => {
+      this.setState(() => ({
+        currPage: view,
+      }));
+    });
+  }
 
   componentWillMount() {
     routerBus.addListener('replace', ({project}) => {
@@ -21,12 +32,12 @@ class Main extends Component<{}, State> {
          project,
        }));
     });
-
-    // projectStore.refreshList()
   }
 
   render() {
-    const tasksView = <div>{JSON.stringify(this.state.project)}</div>;
+    if (this.state.currPage) {
+      return this.state.currPage
+    }
     return <DefaultLayout
   first={this.projectView}
   second={<DeployTasksView />}
