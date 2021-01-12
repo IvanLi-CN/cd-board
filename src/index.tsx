@@ -1,13 +1,14 @@
 import "preact/debug";
 import { render, h, Component } from 'preact';
-import './index.scss'
+import './index.scss';
 import { DefaultLayout } from './layouts/default.layout';
 import { ProjectsView } from './projects/projects.view';
 import { Project } from "./projects/project";
 import { routerBus } from "./events/router.bus";
-import {DeployTasksView} from "./deploy-tasks/deploy-tasks.view";
-import {globalStore} from "./global.store";
-import {ProjectEditorView} from "./projects/project-editor.view";
+import { DeployTasksView } from "./deploy-tasks/deploy-tasks.view";
+import { globalStore } from "./global.store";
+import { ProjectEditorView } from "./projects/project-editor.view";
+import { DeployTaskDetailView } from "./deploy-tasks/deploy-task-detail.view";
 
 interface State {
   project: Project,
@@ -27,21 +28,21 @@ class Main extends Component<{}, State> {
   }
 
   componentWillMount() {
-    routerBus.addListener('replace', ({project}) => {
-       this.setState(() =>( {
-         project,
-       }));
+    routerBus.addListener('replace', ({ project }) => {
+      this.setState(() => ({
+        project,
+      }));
     });
   }
 
   render() {
     if (this.state.currPage) {
-      return this.state.currPage
+      return this.state.currPage;
     }
     return <DefaultLayout
-  first={this.projectView}
-  second={<DeployTasksView />}
-   third={null}/>
+      first={this.projectView}
+      second={<DeployTasksView />}
+      third={<DeployTaskDetailView />} />;
   }
 }
 

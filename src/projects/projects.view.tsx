@@ -18,11 +18,11 @@ export class ProjectsView extends Component<{}, State> {
     this.fetchBaseData();
   }
   render() {
-    const list = this.state.projects.map(project => (
+    const list = this.state.projects?.map(project => (
       <li onClick={() => this.itemOnClick(project)}>
         <ProjectSummaryCardComponent project={project}/>
       </li>
-    ))
+    ));
     return (
       <section>
         <header>
