@@ -29,14 +29,16 @@ function Header() {
     useCallback(val => setProject(val), [val]);
   })
 
-  const list = project.pipes?.map(it => <li >{it}</li>)
+  const list = project.pipes?.map(it => <li 
+    class="inline-block py-2 px-8 text-gray-900 cursor-pointer hover:text-red-400"
+    >{it}</li>)
 
    return (
-    <header class="bg-white p-4">
-      <h2 class="text-black text-xl">{project?.name}</h2>
-      <small class="text-gray-400 text-xs">{project?.remarks}</small>
-      <nav>
-        <ol>
+    <header class="bg-white overflow-auto">
+      <h2 class="text-black text-xl m-2">{project?.name}</h2>
+      <small class="text-gray-400 text-xs mx-2 my-1">{project?.remarks}</small>
+      <nav class="bg-gray-100 px-2">
+        <ol class="block">
           {list}
         </ol>
       </nav>
